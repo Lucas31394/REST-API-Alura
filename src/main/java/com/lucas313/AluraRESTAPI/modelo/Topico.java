@@ -93,6 +93,15 @@ public class Topico {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
+	
+
+	public StatusTopico getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusTopico status) {
+		this.status = status;
+	}
 
 	public List<Resposta> getRespostas() {
 		return respostas;
