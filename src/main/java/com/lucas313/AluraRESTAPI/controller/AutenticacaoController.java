@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lucas313.AluraRESTAPI.config.security.TokenService;
+import com.lucas313.AluraRESTAPI.controller.dto.TokenDTO;
 import com.lucas313.AluraRESTAPI.controller.form.LoginForm;
 
 @RestController
@@ -27,12 +28,12 @@ public class AutenticacaoController {
 	private TokenService tokenService;
 	
 	@PostMapping
-	public ResponseEntity<?> autenticar(@RequestBody @Valid LoginForm form) {
+	public ResponseEntity<TokenDTO> autenticar(@RequestBody @Valid LoginForm form) {
 		UsernamePasswordAuthenticationToken dadosLogin = form.converter();
 		try {
 			Authentication authentication = authManager.authenticate(dadosLogin);
 			String token = tokenService.gerarToken(authentication);
-			return ResponseEntity.ok().build();
+			return ResponseEntity.ok(new TokenDTO(token, "Bearer"));
 		} catch (AuthenticationException e) {
 			return ResponseEntity.badRequest().build();
 		}
