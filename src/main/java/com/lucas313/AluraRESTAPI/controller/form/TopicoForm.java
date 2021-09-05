@@ -1,13 +1,24 @@
 package com.lucas313.AluraRESTAPI.controller.form;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.lucas313.AluraRESTAPI.modelo.Curso;
 import com.lucas313.AluraRESTAPI.modelo.Topico;
 import com.lucas313.AluraRESTAPI.repository.CursoRepository;
+import com.sun.istack.NotNull;
+
+import net.bytebuddy.implementation.bind.annotation.Empty;
 
 public class TopicoForm {
 
+	@NotNull @NotEmpty @Length(min = 5)
 	private String titulo;
+	
+	@NotNull @NotEmpty @Length(min = 10)
 	private String mensagem;
+	
+	@NotNull @NotEmpty
 	private String nomeCurso;
 	
 	public String getTitulo() {
